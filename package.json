@@ -1,15 +1,8 @@
 {
-  "name": "liveserver",
-  "version": "0.1.6",
-  "subversion": 6,
-  "uperversion": "0.1",
-  "description": "Liveserver Client",
-  "main": "index.js",
+  "author": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "bip32-utils": "^0.10.0",
     "bip39": "^2.3.1",
@@ -18,5 +11,12 @@
     "bitcore-message": "^1.0.4",
     "prelude-ls": "^1.1.2",
     "superagent": "^3.5.2"
-  }
+  },
+  "license": "ISC",
+  "name": "liveserver",
+  "version": "0.1.7",
+  "subversion": 7,
+  "uperversion": "0.1",
+  "description": "Liveserver Client",
+  "main": "index.js"
 }

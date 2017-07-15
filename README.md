@@ -12,10 +12,11 @@
 Install 
 
 ```
-npm i liveserver -g
+npm i livescript liveserver -g
 ```
 
 Generate Client Wallet
+
 
 ```Livescript 
 
