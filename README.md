@@ -1,9 +1,11 @@
 ### Live Server
 
 Code as a service Business Model
+You can upload your code and earn money from it's usage
 ---------------------------
 
-You can upload your code and earn money from it's usage
+This is centralized demo
+
 
 Install 
 
@@ -43,6 +45,7 @@ container = get-container config
 
 container.status (err, result)->
    console.log err, result
+   # running
 
 
 ```
@@ -94,3 +97,5 @@ container.create files, (err, result)->
    console.log err, result
 
 ```
+
+Please generate an wallet and ask for funds `a.stegno@gmail.com`
