@@ -14,14 +14,10 @@ require! {
 
 network = bitcoin.networks.bitcoin
 
-
-
-
 guid = ->
   s4 = ->
     Math.floor((1 + Math.random!) * 0x10000).toString(16).substring 1
   s4! + s4! + \- + s4! + \- + s4! + \- + s4! + \- + s4! + s4! + s4!
-
 
 request = (config, path, body, cb)->
     parts = path.match(/^(A-Z+) (.+)$/)
@@ -49,9 +45,11 @@ simple = (path, config, cb)-->
 
 status = simple "GET /container/status/:name"
 
-start = simple "POST /container/start/:name"
+methods = simple "GET /container/methods/:name"
 
-stop = simple "POST /container/stop/:name"
+start  = simple "POST /container/start/:name"
+
+stop   = simple "POST /container/stop/:name"
 
 create = (config, data, cb)-->
   return cb "Data Must be Object" if typeof! data isnt \Object
@@ -59,9 +57,9 @@ create = (config, data, cb)-->
   err, data <-! request config, "POST /container/create/:name", data
   cb err, data.text
 
-operation = (config, operation, data, cb)-->
+method = (config, method, data, cb)-->
   return cb "Data Must be Object" if typeof! data isnt \Object
-  err, data <-! request config, "POST /container/:name/#{operation}", data
+  err, data <-! request config, "POST /container/:name/#{method}", data
   cb err, data.text
 
 export get-container = (config)->
@@ -69,5 +67,6 @@ export get-container = (config)->
   create: create config
   start: start config
   stop: stop config
-  operation: operation config
+  method: method config
+  methods: methods config
 

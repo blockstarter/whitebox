@@ -1,4 +1,8 @@
 {
+  "uperversion": "0.1",
+  "subversion": 8,
+  "main": "index.js",
+  "description": "Liveserver Client",
   "author": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,9 +18,5 @@
   },
   "license": "ISC",
   "name": "liveserver",
-  "version": "0.1.7",
-  "subversion": 7,
-  "uperversion": "0.1",
-  "description": "Liveserver Client",
-  "main": "index.js"
+  "version": "0.1.8"
 }

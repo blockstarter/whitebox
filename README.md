@@ -53,13 +53,22 @@ container.status (err, result)->
 
 ```
 
-Execute Operation 
+Get Available Methods 
 
 ```Livescript 
 
-container.operation \transfer , { to: "ADDRESS", amount: "0.001" }, (err, result)->
+container.methods (err, result)->
    console.log err, result
+   
+```
 
+Execute Method 
+
+```Livescript 
+
+container.method \transfer , { to: "ADDRESS", amount: "0.001" }, (err, result)->
+   console.log err, result
+   
 ```
 
 Stop Container (You must be an owner)
