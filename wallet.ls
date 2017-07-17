@@ -4,6 +4,8 @@ require! {
    \bip39
 }
 
+network = bitcoin.networks.bitcoin
+
 export generate-keys = (mnemonic)->
     seed = bip39.mnemonic-to-seed-hex mnemonic 
     hdnode = bitcoin.HDNode.from-seed-hex(seed, network).derive(0)

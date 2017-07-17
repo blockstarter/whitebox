@@ -1,7 +1,4 @@
 require! {
-   \bitcoinjs-lib : bitcoin
-   \bip32-utils : bip32utils
-   \bip39
    \fs
    \prelude-ls : p
    \bitcore-message : \Message
@@ -12,7 +9,6 @@ require! {
 
 { generate-keys } = wallet
 
-network = bitcoin.networks.bitcoin
 
 guid = ->
   s4 = ->
@@ -20,15 +16,17 @@ guid = ->
   s4! + s4! + \- + s4! + \- + s4! + \- + s4! + \- + s4! + s4! + s4!
 
 request = (config, path, body, cb)->
-    parts = path.match(/^(A-Z+) (.+)$/)
-    type = parts.1.to-lower-case!
     { mnemonic, name, node } = config
+    console.log path.replace(/:name/, name)
+    parts = path.match(/^([A-Z]+) (\/.+)$/)
+    type = parts.1.to-lower-case!
+    
     url-part = parts.2.replace(/:name/, name)
-    ck = generate-keys message
+    ck = generate-keys mnemonic
     url = "#{node}#{url-part}"
     requestid = guid!
     message =
-       [name, body, requestid] |> p.map JSON.stringify |> p.join \;
+       [url-part, body, requestid] |> p.map JSON.stringify |> p.join \;
     private-key2 = bitcore.PrivateKey.fromWIF(ck.private-key)
     signature = Message(message).sign(private-key2)
     req = superagent[type] url
@@ -41,7 +39,7 @@ request = (config, path, body, cb)->
 
 simple = (path, config, cb)-->
   err, data <-! request config, path, {}
-  cb err, data.text
+  cb err, data?text
 
 status = simple "GET /container/status/:name"
 
@@ -52,15 +50,17 @@ start  = simple "POST /container/start/:name"
 stop   = simple "POST /container/stop/:name"
 
 create = (config, data, cb)-->
-  return cb "Data Must be Object" if typeof! data isnt \Object
-  return cb "'code' is required field" if typeof! data.code isnt \String
-  err, data <-! request config, "POST /container/create/:name", data
-  cb err, data.text
+  return cb "Data Must be an Object" if typeof! data isnt \Object
+  return cb "'files' is required field" if typeof! data.files isnt \Object
+  return cb "'name' is required field" if typeof! data.name isnt \String
+  
+  err, data <-! request { config.files, config.name }, "POST /container/create", data
+  cb err, data?text
 
 method = (config, method, data, cb)-->
   return cb "Data Must be Object" if typeof! data isnt \Object
   err, data <-! request config, "POST /container/:name/#{method}", data
-  cb err, data.text
+  cb err, data?text
 
 export get-container = (config)->
   status: status config
