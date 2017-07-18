@@ -62,6 +62,27 @@ container.methods (err, result)->
    
 ```
 
+Get Full Container Info 
+
+```Livescript
+
+require! \liveserver
+
+{ get-container } = liveserver
+
+config = 
+   name: \accounts
+   mnemonic: "your secret private phrase"
+   node: \https://expresshub-askucher.c9users.io
+
+container = get-container config
+
+container.info (err, result)->
+   console.log err, result
+
+
+```
+
 Execute Method 
 
 ```Livescript 
