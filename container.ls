@@ -49,6 +49,8 @@ start  = simple "POST /container/start/:name"
 
 stop   = simple "POST /container/stop/:name"
 
+export get-container-list = simple "GET /containers"
+
 create = (config, data, cb)-->
   return cb "Data Must be an Object" if typeof! data isnt \Object
   return cb "'files' is required field" if typeof! data.files isnt \Object
@@ -57,10 +59,22 @@ create = (config, data, cb)-->
   err, data <-! request { config.files, config.name }, "POST /container/create", data
   cb err, data?text
 
+update = (config, data, cb)-->
+  return cb "Data Must be an Object" if typeof! data isnt \Object
+  return cb "'affected-files' is required field" if typeof! data.affected-files isnt \Object
+  return cb "'deletes-files' is required field" if typeof! data.deletes-files isnt \Array
+  return cb "'name' is required field" if typeof! data.name isnt \String
+  
+  err, data <-! request { data.affected-files, data.deletes-files, config.name }, "POST /container/update", data
+  cb err, data?text
+
 method = (config, method, data, cb)-->
   return cb "Data Must be Object" if typeof! data isnt \Object
   err, data <-! request config, "POST /container/:name/#{method}", data
   cb err, data?text
+
+  
+  
 
 export get-container = (config)->
   status: status config
