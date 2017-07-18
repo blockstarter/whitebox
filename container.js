@@ -97,7 +97,7 @@
       stop: stop(config),
       method: method(config),
       methods: methods(config),
-      info: methods(config)
+      info: info(config)
     };
   };
   function curry$(f, bound){

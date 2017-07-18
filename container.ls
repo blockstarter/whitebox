@@ -83,5 +83,5 @@ export get-container = (config)->
   stop: stop config
   method: method config
   methods: methods config
-  info: methods config
+  info: info config
 
