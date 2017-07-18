@@ -17,7 +17,7 @@ guid = ->
 
 request = (config, path, body, cb)->
     { mnemonic, name, node } = config
-    console.log path.replace(/:name/, name)
+    #console.log path.replace(/:name/, name)
     parts = path.match(/^([A-Z]+) (\/.+)$/)
     type = parts.1.to-lower-case!
     
@@ -49,6 +49,8 @@ start  = simple "POST /container/start/:name"
 
 stop   = simple "POST /container/stop/:name"
 
+info   = simple "GET /container/:name"
+
 export get-container-list = simple "GET /containers"
 
 create = (config, data, cb)-->
@@ -73,8 +75,6 @@ method = (config, method, data, cb)-->
   err, data <-! request config, "POST /container/:name/#{method}", data
   cb err, data?text
 
-  
-  
 
 export get-container = (config)->
   status: status config
@@ -83,4 +83,5 @@ export get-container = (config)->
   stop: stop config
   method: method config
   methods: methods config
+  info: methods config
 
