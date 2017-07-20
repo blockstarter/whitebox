@@ -17,6 +17,9 @@ guid = ->
 
 request = (config, path, body, cb)->
     { mnemonic, name, node } = config
+    return cb "Mnemonic is required" if not mnemonic?
+    #return cb "Name is required" if not name?
+    return cb "Node is required" if not node?
     #console.log path.replace(/:name/, name)
     parts = path.match(/^([A-Z]+) (\/.+)$/)
     type = parts.1.to-lower-case!
@@ -63,8 +66,8 @@ create = (config, data, cb)-->
 
 update = (config, data, cb)-->
   return cb "Data Must be an Object" if typeof! data isnt \Object
-  return cb "'affected-files' is required field" if typeof! data.affected-files isnt \Object
-  return cb "'deletes-files' is required field" if typeof! data.deletes-files isnt \Array
+  return cb "'affected-files' is object: { filename: 'content', ...  }" if typeof! data.affected-files isnt \Object
+  return cb "'deletes-files' is array [\filename1, \filename2]" if typeof! data.deletes-files isnt \Array
   return cb "'name' is required field" if typeof! data.name isnt \String
   
   err, data <-! request { data.affected-files, data.deletes-files, config.name }, "POST /container/update", data

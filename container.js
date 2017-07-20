@@ -18,6 +18,12 @@
   request = function(config, path, body, cb){
     var mnemonic, name, node, parts, type, urlPart, ck, url, requestid, message, privateKey2, signature, req;
     mnemonic = config.mnemonic, name = config.name, node = config.node;
+    if (mnemonic == null) {
+      return cb("Mnemonic is required");
+    }
+    if (node == null) {
+      return cb("Node is required");
+    }
     parts = path.match(/^([A-Z]+) (\/.+)$/);
     type = parts[1].toLowerCase();
     urlPart = parts[2].replace(/:name/, name);
@@ -65,10 +71,10 @@
       return cb("Data Must be an Object");
     }
     if (toString$.call(data.affectedFiles).slice(8, -1) !== 'Object') {
-      return cb("'affected-files' is required field");
+      return cb("'affected-files' is object: { filename: 'content', ...  }");
     }
     if (toString$.call(data.deletesFiles).slice(8, -1) !== 'Array') {
-      return cb("'deletes-files' is required field");
+      return cb("'deletes-files' is array [\filename1, \filename2]");
     }
     if (toString$.call(data.name).slice(8, -1) !== 'String') {
       return cb("'name' is required field");
