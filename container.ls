@@ -61,7 +61,7 @@ create = (config, data, cb)-->
   return cb "'files' is required field" if typeof! data.files isnt \Object
   #return cb "'name' is required field" if typeof! data.name isnt \String
   
-  err, data <-! request config, "POST /container/create", data
+  err, data <-! request config, "POST /container/create/:name", data
   cb err, data?text
 
 update = (config, data, cb)-->
@@ -70,7 +70,7 @@ update = (config, data, cb)-->
   return cb "'deletes-files' is array [\filename1, \filename2]" if typeof! data.deletes-files isnt \Array
   #return cb "'name' is required field" if typeof! data.name isnt \String
   
-  err, data <-! request config, "POST /container/update", data
+  err, data <-! request config, "POST /container/update/:name", data
   cb err, data?text
 
 method = (config, method, data, cb)-->
