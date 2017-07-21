@@ -59,18 +59,18 @@ export get-container-list = simple "GET /containers"
 create = (config, data, cb)-->
   return cb "Data Must be an Object" if typeof! data isnt \Object
   return cb "'files' is required field" if typeof! data.files isnt \Object
-  return cb "'name' is required field" if typeof! data.name isnt \String
+  #return cb "'name' is required field" if typeof! data.name isnt \String
   
-  err, data <-! request { config.files, config.name }, "POST /container/create", data
+  err, data <-! request config, "POST /container/create", data
   cb err, data?text
 
 update = (config, data, cb)-->
   return cb "Data Must be an Object" if typeof! data isnt \Object
   return cb "'affected-files' is object: { filename: 'content', ...  }" if typeof! data.affected-files isnt \Object
   return cb "'deletes-files' is array [\filename1, \filename2]" if typeof! data.deletes-files isnt \Array
-  return cb "'name' is required field" if typeof! data.name isnt \String
+  #return cb "'name' is required field" if typeof! data.name isnt \String
   
-  err, data <-! request { data.affected-files, data.deletes-files, config.name }, "POST /container/update", data
+  err, data <-! request config, "POST /container/update", data
   cb err, data?text
 
 method = (config, method, data, cb)-->

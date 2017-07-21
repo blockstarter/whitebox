@@ -56,13 +56,7 @@
     if (toString$.call(data.files).slice(8, -1) !== 'Object') {
       return cb("'files' is required field");
     }
-    if (toString$.call(data.name).slice(8, -1) !== 'String') {
-      return cb("'name' is required field");
-    }
-    return request({
-      files: config.files,
-      name: config.name
-    }, "POST /container/create", data, function(err, data){
+    return request(config, "POST /container/create", data, function(err, data){
       cb(err, data != null ? data.text : void 8);
     });
   });
@@ -76,14 +70,7 @@
     if (toString$.call(data.deletesFiles).slice(8, -1) !== 'Array') {
       return cb("'deletes-files' is array [\filename1, \filename2]");
     }
-    if (toString$.call(data.name).slice(8, -1) !== 'String') {
-      return cb("'name' is required field");
-    }
-    return request({
-      affectedFiles: data.affectedFiles,
-      deletesFiles: data.deletesFiles,
-      name: config.name
-    }, "POST /container/update", data, function(err, data){
+    return request(config, "POST /container/update", data, function(err, data){
       cb(err, data != null ? data.text : void 8);
     });
   });
