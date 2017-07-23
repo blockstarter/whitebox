@@ -82,6 +82,7 @@ method = (config, method, data, cb)-->
 export get-container = (config)->
   status: status config
   create: create config
+  update: update config
   start: start config
   stop: stop config
   method: method config

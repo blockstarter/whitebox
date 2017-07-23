@@ -1,12 +1,5 @@
 {
-  "uperversion": "0.1",
-  "subversion": 18,
-  "main": "index.js",
-  "description": "Liveserver Client",
-  "author": "",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "license": "ISC",
   "dependencies": {
     "bip32-utils": "^0.10.0",
     "bip39": "^2.3.1",
@@ -16,7 +9,14 @@
     "prelude-ls": "^1.1.2",
     "superagent": "^3.5.2"
   },
-  "license": "ISC",
+  "version": "0.1.19",
   "name": "liveserver",
-  "version": "0.1.18"
+  "uperversion": "0.1",
+  "subversion": 19,
+  "main": "index.js",
+  "description": "Liveserver Client",
+  "author": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
 }
