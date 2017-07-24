@@ -1,4 +1,8 @@
 {
+  "uperversion": "0.1",
+  "subversion": 23,
+  "main": "index.js",
+  "description": "Liveserver Client",
   "author": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -8,14 +12,11 @@
     "bip39": "^2.3.1",
     "bitcoinjs-lib": "^3.1.0",
     "bitcore-message": "^1.0.4",
+    "bitcore-lib": "^0.14.0",
     "prelude-ls": "^1.1.2",
     "superagent": "^3.5.2"
   },
   "license": "ISC",
   "name": "whitebox",
-  "version": "0.1.22",
-  "subversion": 22,
-  "uperversion": "0.1",
-  "description": "Liveserver Client",
-  "main": "index.js"
+  "version": "0.1.23"
 }
