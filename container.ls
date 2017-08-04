@@ -15,6 +15,8 @@ guid = ->
     Math.floor((1 + Math.random!) * 0x10000).toString(16).substring 1
   s4! + s4! + \- + s4! + \- + s4! + \- + s4! + \- + s4! + s4! + s4!
 
+
+
 request = (config, path, body, cb)->
     { mnemonic, name, node } = config
     return cb "Mnemonic is required" if not mnemonic?
@@ -78,6 +80,10 @@ method = (config, method, data, cb)-->
   err, data <-! request config, "POST /container/:name/#{method}", data
   cb err, data?text
 
+export sign = (mnemonic, message)->
+    ck = generate-keys mnemonic
+    private-key2 = bitcore.PrivateKey.fromWIF(ck.private-key)
+    Message(message).sign(private-key2)
 
 export get-container = (config)->
   status: status config
