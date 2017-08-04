@@ -9,4 +9,5 @@
   exports.generateWallet = generateWallet;
   exports.getContainerList = getContainerList;
   exports.generateKeys = generateKeys;
+  exports.getAddressByIndex = getAddressByIndex;
 }).call(this);
