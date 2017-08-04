@@ -6,7 +6,7 @@ require! {
 
 network = bitcoin.networks.bitcoin
 
-export get-address-by-index = (mnemonic, index)->
+export get-address-by-index = (mnemonic, index, network)->
     seed = bip39.mnemonic-to-seed-hex mnemonic 
     hdnode = bitcoin.HDNode.from-seed-hex(seed, network).derive(index)
     hdnode.get-address!

@@ -1,4 +1,8 @@
 {
+  "uperversion": "0.1",
+  "subversion": 28,
+  "main": "index.js",
+  "description": "Liveserver Client",
   "author": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,9 +18,5 @@
   },
   "license": "ISC",
   "name": "whitebox",
-  "version": "0.1.27",
-  "subversion": 27,
-  "uperversion": "0.1",
-  "description": "Liveserver Client",
-  "main": "index.js"
+  "version": "0.1.28"
 }

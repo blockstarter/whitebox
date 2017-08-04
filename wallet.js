@@ -5,7 +5,7 @@
   bip32utils = require('bip32-utils');
   bip39 = require('bip39');
   network = bitcoin.networks.bitcoin;
-  out$.getAddressByIndex = getAddressByIndex = function(mnemonic, index){
+  out$.getAddressByIndex = getAddressByIndex = function(mnemonic, index, network){
     var seed, hdnode;
     seed = bip39.mnemonicToSeedHex(mnemonic);
     hdnode = bitcoin.HDNode.fromSeedHex(seed, network).derive(index);
