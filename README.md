@@ -12,7 +12,7 @@
 Install 
 
 ```
-npm i livescript liveserver -g
+npm i livescript whitebox -g
 ```
 
 Generate Client Wallet
@@ -20,9 +20,9 @@ Generate Client Wallet
 
 ```Livescript 
 
-require! \liveserver
+require! \whitebox
 
-{ generate-wallet } = liveserver
+{ generate-wallet } = whitebox
 
 { mnemonic, address } =  generate-wallet!
 
@@ -35,9 +35,9 @@ Check Status
 
 ```Livescript
 
-require! \liveserver
+require! \whitebox
 
-{ get-container } = liveserver
+{ get-container } = whitebox
 
 config = 
    name: \accounts
@@ -66,9 +66,9 @@ Get Full Container Info
 
 ```Livescript
 
-require! \liveserver
+require! \whitebox
 
-{ get-container } = liveserver
+{ get-container } = whitebox
 
 config = 
    name: \accounts
