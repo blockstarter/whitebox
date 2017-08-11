@@ -20,6 +20,7 @@ get-bitcoin-address-by-index = (mnemonic, index, network)->
 
 export get-address-by-index = (mnemonic, index, network)->
     type = network?message-prefix
+    console?log \type, type
     fun =
         | not type? => "Wrong Network"
         | type is \Waves or type is \WavesTest => get-waves-address-by-index

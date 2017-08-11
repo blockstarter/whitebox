@@ -24,6 +24,9 @@
   out$.getAddressByIndex = getAddressByIndex = function(mnemonic, index, network){
     var type, fun;
     type = network != null ? network.messagePrefix : void 8;
+    if (typeof console != 'undefined' && console !== null) {
+      console.log('type', type);
+    }
     fun = (function(){
       switch (false) {
       case type != null:
