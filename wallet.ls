@@ -2,14 +2,27 @@ require! {
    \bitcoinjs-lib : bitcoin
    \bip32-utils : bip32utils
    \bip39
+   \waves.js/dist/waves.js
 }
 
 network = bitcoin.networks.bitcoin
 
-export get-address-by-index = (mnemonic, index, network)->
+get-waves-address-by-index = (mnemonic, index, network)->
+    symbol = if network is \waves then \W else \T
+    utils =  new waves.default { chainId : symbol.charCodeAt(0)  }
+    { address } = utils.create-account "#{mnemonic} / #{index}"
+    address
+    
+get-bitcoin-address-by-index = (mnemonic, index, network)->
     seed = bip39.mnemonic-to-seed-hex mnemonic 
     hdnode = bitcoin.HDNode.from-seed-hex(seed, network).derive(index)
     hdnode.get-address!
+
+export get-address-by-index = (mnemonic, index, network)->
+    fun =
+        | network is \waves or network is \waves-testnet => get-waves-address-by-index
+        | _ => get-bitcoin-address-by-index 
+    fun mnemonic, index, network
     
 export generate-keys = (mnemonic)->
     seed = bip39.mnemonic-to-seed-hex mnemonic 
