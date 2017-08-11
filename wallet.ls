@@ -8,7 +8,7 @@ require! {
 network = bitcoin.networks.bitcoin
 
 get-waves-address-by-index = (mnemonic, index, network)->
-    chain-id = if network?message-prefix is \Waves then 'W'.charCodeAt(0) else 'T'.charCodeAt(0)
+    chain-id = if network.message-prefix is \Waves then 'W'.charCodeAt(0) else 'T'.charCodeAt(0)
     utils =  new waves.default { chain-id  }
     { address } = utils.create-account "#{mnemonic} / #{index}"
     address
