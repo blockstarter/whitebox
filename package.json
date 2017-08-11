@@ -1,15 +1,8 @@
 {
-  "name": "whitebox",
-  "version": "0.1.36",
-  "subversion": 36,
-  "uperversion": "0.1",
-  "description": "Liveserver Client",
-  "main": "index.js",
+  "author": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "bip32-utils": "^0.10.0",
     "bip39": "^2.3.1",
@@ -19,5 +12,12 @@
     "prelude-ls": "^1.1.2",
     "superagent": "^3.5.2",
     "waves.js": "0.0.7-13"
-  }
+  },
+  "license": "ISC",
+  "name": "whitebox",
+  "version": "0.1.37",
+  "subversion": 37,
+  "uperversion": "0.1",
+  "description": "Liveserver Client",
+  "main": "index.js"
 }
