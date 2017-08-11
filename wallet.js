@@ -8,7 +8,7 @@
   network = bitcoin.networks.bitcoin;
   getWavesAddressByIndex = function(mnemonic, index, network){
     var symbol, utils, address;
-    symbol = network === 'waves' ? 'W' : 'T';
+    symbol = network === 'Waves' ? 'W' : 'T';
     utils = new waves['default']({
       chainId: symbol.charCodeAt(0)
     });
@@ -24,9 +24,6 @@
   out$.getAddressByIndex = getAddressByIndex = function(mnemonic, index, network){
     var type, fun;
     type = network != null ? network.messagePrefix : void 8;
-    if (typeof console != 'undefined' && console !== null) {
-      console.log('type', type);
-    }
     fun = (function(){
       switch (false) {
       case type != null:

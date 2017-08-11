@@ -8,7 +8,7 @@ require! {
 network = bitcoin.networks.bitcoin
 
 get-waves-address-by-index = (mnemonic, index, network)->
-    symbol = if network is \waves then \W else \T
+    symbol = if network is \Waves then \W else \T
     utils =  new waves.default { chainId : symbol.charCodeAt(0)  }
     { address } = utils.create-account "#{mnemonic} / #{index}"
     address
@@ -20,7 +20,6 @@ get-bitcoin-address-by-index = (mnemonic, index, network)->
 
 export get-address-by-index = (mnemonic, index, network)->
     type = network?message-prefix
-    console?log \type, type
     fun =
         | not type? => "Wrong Network"
         | type is \Waves or type is \WavesTest => get-waves-address-by-index
