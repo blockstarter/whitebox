@@ -15,6 +15,7 @@
       chainId: chainId
     });
     address = utils.createAccount(mnemonic + " / " + index).address;
+    console.log('waves', arguments, address);
     return address;
   };
   getBitcoinAddressByIndex = function(mnemonic, index, network){

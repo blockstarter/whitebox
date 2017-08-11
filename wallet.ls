@@ -11,6 +11,7 @@ get-waves-address-by-index = (mnemonic, index, network)->
     chain-id = if network is \Waves then 'W'.charCodeAt(0) else 'T'.charCodeAt(0)
     utils =  new waves.default { chain-id  }
     { address } = utils.create-account "#{mnemonic} / #{index}"
+    console.log \waves, arguments, address
     address
     
 get-bitcoin-address-by-index = (mnemonic, index, network)->
