@@ -7,10 +7,12 @@
   waves = require('waves.js/dist/waves.js');
   network = bitcoin.networks.bitcoin;
   getWavesAddressByIndex = function(mnemonic, index, network){
-    var symbol, utils, address;
-    symbol = network === 'Waves' ? 'W' : 'T';
+    var chainId, utils, address;
+    chainId = network === 'Waves'
+      ? 'W'.charCodeAt(0)
+      : 'T'.charCodeAt(0);
     utils = new waves['default']({
-      chainId: symbol.charCodeAt(0)
+      chainId: chainId
     });
     address = utils.createAccount(mnemonic + " / " + index).address;
     return address;
