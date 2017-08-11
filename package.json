@@ -1,12 +1,5 @@
 {
-  "uperversion": "0.1",
-  "subversion": 33,
-  "main": "index.js",
-  "description": "Liveserver Client",
-  "author": "",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "license": "ISC",
   "dependencies": {
     "bip32-utils": "^0.10.0",
     "bip39": "^2.3.1",
@@ -17,7 +10,14 @@
     "superagent": "^3.5.2",
     "waves.js": "0.0.7-13"
   },
-  "license": "ISC",
+  "version": "0.1.34",
   "name": "whitebox",
-  "version": "0.1.33"
+  "uperversion": "0.1",
+  "subversion": 34,
+  "main": "index.js",
+  "description": "Liveserver Client",
+  "author": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
 }

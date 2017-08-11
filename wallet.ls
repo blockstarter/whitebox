@@ -9,7 +9,7 @@ network = bitcoin.networks.bitcoin
 
 get-waves-address-by-index = (mnemonic, index, network)->
     symbol = if network is \Waves then \W else \T
-    utils =  new waves.default { chainId : symbol.charCodeAt(0)  }
+    utils =  new waves.default { chain-id : symbol.char-code-at(0)  }
     { address } = utils.create-account "#{mnemonic} / #{index}"
     address
     
