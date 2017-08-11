@@ -19,8 +19,10 @@ get-bitcoin-address-by-index = (mnemonic, index, network)->
     hdnode.get-address!
 
 export get-address-by-index = (mnemonic, index, network)->
+    type = network?message-prefix
     fun =
-        | network is \waves or network is \waves-testnet => get-waves-address-by-index
+        | not type? => "Wrong Network"
+        | type is \Waves or type is \WavesTest => get-waves-address-by-index
         | _ => get-bitcoin-address-by-index 
     fun mnemonic, index, network
     

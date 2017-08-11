@@ -22,10 +22,13 @@
     return hdnode.getAddress();
   };
   out$.getAddressByIndex = getAddressByIndex = function(mnemonic, index, network){
-    var fun;
+    var type, fun;
+    type = network != null ? network.messagePrefix : void 8;
     fun = (function(){
       switch (false) {
-      case !(network === 'waves' || network === 'waves-testnet'):
+      case type != null:
+        return "Wrong Network";
+      case !(type === 'Waves' || type === 'WavesTest'):
         return getWavesAddressByIndex;
       default:
         return getBitcoinAddressByIndex;
