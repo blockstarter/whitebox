@@ -8,14 +8,13 @@
   network = bitcoin.networks.bitcoin;
   getWavesAddressByIndex = function(mnemonic, index, network){
     var chainId, utils, address;
-    chainId = network === 'Waves'
+    chainId = network.messagePrefix === 'Waves'
       ? 'W'.charCodeAt(0)
       : 'T'.charCodeAt(0);
     utils = new waves['default']({
       chainId: chainId
     });
     address = utils.createAccount(mnemonic + " / " + index).address;
-    console.log('waves', arguments, address);
     return address;
   };
   getBitcoinAddressByIndex = function(mnemonic, index, network){
@@ -30,7 +29,7 @@
     fun = (function(){
       switch (false) {
       case type != null:
-        return "Wrong Network";
+        return "Wrong Type";
       case !(type === 'Waves' || type === 'WavesTest'):
         return getWavesAddressByIndex;
       default:
