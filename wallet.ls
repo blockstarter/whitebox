@@ -3,17 +3,22 @@ require! {
    \bip32-utils : bip32utils
    \bip39
    \waves.js/dist/waves.js
+   \./monero.js
 }
 
 network = bitcoin.networks.bitcoin
 
 get-waves-address-by-index = (mnemonic, index, network)->
     chain-id = if network.message-prefix is \Waves 
-               then 'W'.charCodeAt(0) else 'T'.charCodeAt(0)
-    utils =  new waves.default { chain-id  }
+               then 'W'.charCodeAt(0) else 'T'.char-code-at(0)
+    utils =  new waves.default { chain-id }
     { address } = utils.create-account "#{mnemonic} / #{index}"
     address
-    
+
+get-monero-address-by-index = (mnemonic, index, network)->
+    { address } = monero.generate-address "#{mnemonic} / #{index}"
+    address
+
 get-bitcoin-address-by-index = (mnemonic, index, network)->
     seed = bip39.mnemonic-to-seed-hex mnemonic 
     hdnode = bitcoin.HDNode.from-seed-hex(seed, network).derive(index)
@@ -23,6 +28,7 @@ export get-address-by-index = (mnemonic, index, network)->
     type = network?message-prefix
     fun =
         | not type? => "Wrong Type"
+        | type is \Monero => get-monero-address-by-index
         | type is \Waves or type is \WavesTest => get-waves-address-by-index
         | _ => get-bitcoin-address-by-index 
     fun mnemonic, index, network
