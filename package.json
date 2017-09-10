@@ -1,24 +1,24 @@
 {
-  "uperversion": "0.1",
-  "subversion": 43,
-  "main": "index.js",
-  "description": "Liveserver Client",
-  "author": "",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "license": "ISC",
   "dependencies": {
+    "bitcore-lib": "latest",
+    "bitcore-message": "latest",
     "ethereumjs-wallet": "^0.6.0",
     "prelude-ls": "^1.1.2",
     "superagent": "^3.5.2",
     "waves.js": "0.0.7-13",
     "bip32-utils": "^0.10.0",
     "bip39": "^2.3.1",
-    "bitcoinjs-lib": "^3.1.0",
-    "bitcore-lib": "latest",
-    "bitcore-message": "latest"
+    "bitcoinjs-lib": "^3.1.0"
   },
-  "license": "ISC",
+  "version": "0.1.44",
   "name": "whitebox",
-  "version": "0.1.43"
+  "uperversion": "0.1",
+  "subversion": 44,
+  "main": "index.js",
+  "description": "Liveserver Client",
+  "author": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
 }

@@ -33,7 +33,8 @@ get-bitcoin-fullpair-by-index = (mnemonic, index, network)->
     hdnode = bitcoin.HDNode.from-seed-hex(seed, network).derive(index)
     address = hdnode.get-address!
     private-key = hdnode.key-pair.toWIF!
-    { address, private-key }
+    public-key = hdnode.get-public-key-buffer!.to-string(\hex)
+    { address, private-key, public-key }
 
 get-ethereum-fullpair-by-index = (mnemonic, index, network)->
     seed = bip39.mnemonic-to-seed(mnemonic)
@@ -41,7 +42,8 @@ get-ethereum-fullpair-by-index = (mnemonic, index, network)->
     w = wallet.derive-path("0").derive-child(index).get-wallet!
     address = "0x" + w.get-address!.to-string(\hex)
     private-key = w.get-private-key-string!
-    { address, private-key }
+    public-key = w..get-public-key-string!
+    { address, private-key, public-key }
     
 
 export get-fullpair-by-index = (mnemonic, index, network)->
