@@ -39,26 +39,30 @@
     };
   };
   getBitcoinFullpairByIndex = function(mnemonic, index, network){
-    var seed, hdnode, address, privateKey;
+    var seed, hdnode, address, privateKey, publicKey;
     seed = bip39.mnemonicToSeedHex(mnemonic);
     hdnode = bitcoin.HDNode.fromSeedHex(seed, network).derive(index);
     address = hdnode.getAddress();
     privateKey = hdnode.keyPair.toWIF();
+    publicKey = hdnode.getPublicKeyBuffer().toString('hex');
     return {
       address: address,
-      privateKey: privateKey
+      privateKey: privateKey,
+      publicKey: publicKey
     };
   };
   getEthereumFullpairByIndex = function(mnemonic, index, network){
-    var seed, wallet, w, address, privateKey;
+    var seed, wallet, w, address, privateKey, publicKey;
     seed = bip39.mnemonicToSeed(mnemonic);
     wallet = hdkey.fromMasterSeed(seed);
     w = wallet.derivePath("0").deriveChild(index).getWallet();
     address = "0x" + w.getAddress().toString('hex');
     privateKey = w.getPrivateKeyString();
+    publicKey = w.getPublicKeyString();
     return {
       address: address,
-      privateKey: privateKey
+      privateKey: privateKey,
+      publicKey: publicKey
     };
   };
   out$.getFullpairByIndex = getFullpairByIndex = function(mnemonic, index, network){

@@ -42,7 +42,7 @@ get-ethereum-fullpair-by-index = (mnemonic, index, network)->
     w = wallet.derive-path("0").derive-child(index).get-wallet!
     address = "0x" + w.get-address!.to-string(\hex)
     private-key = w.get-private-key-string!
-    public-key = w..get-public-key-string!
+    public-key = w.get-public-key-string!
     { address, private-key, public-key }
     
 
