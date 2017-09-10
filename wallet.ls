@@ -13,37 +13,50 @@ require! {
 
 network = bitcoin.networks.bitcoin
 
-get-waves-address-by-index = (mnemonic, index, network)->
+buf2hex = (buffer)->
+  Array.prototype.map.call(buffer, (x) -> ('00' + x.toString(16)).slice(-2)).join('')
+
+get-waves-fullpair-by-index = (mnemonic, index, network)->
     chain-id = if network.message-prefix is \Waves 
                then 'W'.charCodeAt(0) else 'T'.char-code-at(0)
     utils =  new waves.default { chain-id }
-    { address } = utils.create-account "#{mnemonic} / #{index}"
-    address
+    { address, keys } = utils.create-account "#{mnemonic} / #{index}"
+    { private-key, public-key } = keys
+    { address, private-key : buf2hex(private-key), public-key : buf2hex(public-key) } 
 
-get-monero-address-by-index = (mnemonic, index, network)->
-    { address } = monero.generate-address "#{mnemonic} / #{index}"
-    address
+get-monero-fullpair-by-index = (mnemonic, index, network)->
+    { address, spend-key, view-key } = monero.generate-address "#{mnemonic} / #{index}"
+    { address, private-key: spend-key, view-key }
 
-get-bitcoin-address-by-index = (mnemonic, index, network)->
+get-bitcoin-fullpair-by-index = (mnemonic, index, network)->
     seed = bip39.mnemonic-to-seed-hex mnemonic 
     hdnode = bitcoin.HDNode.from-seed-hex(seed, network).derive(index)
-    hdnode.get-address!
+    address = hdnode.get-address!
+    private-key = hdnode.key-pair.toWIF!
+    { address, private-key }
 
-get-ethereum-address-by-index = (mnemonic, index, network)->
+get-ethereum-fullpair-by-index = (mnemonic, index, network)->
     seed = bip39.mnemonic-to-seed(mnemonic)
     wallet = hdkey.from-master-seed(seed)   
-    "0x" + wallet.derive-path("0").derive-child(index).get-wallet!.get-address!.to-string(\hex)
+    w = wallet.derive-path("0").derive-child(index).get-wallet!
+    address = "0x" + w.get-address!.to-string(\hex)
+    private-key = w.get-private-key-string!
+    { address, private-key }
+    
 
-
-export get-address-by-index = (mnemonic, index, network)->
+export get-fullpair-by-index = (mnemonic, index, network)->
     type = network?message-prefix
     fun =
         | not type? => "Wrong Type"
-        | type is \Monero => get-monero-address-by-index
-        | type is \Waves or type is \WavesTest => get-waves-address-by-index
-        | type is \Ethereum => get-ethereum-address-by-index
-        | _ => get-bitcoin-address-by-index 
+        | type is \Monero => get-monero-fullpair-by-index
+        | type is \Waves or type is \WavesTest => get-waves-fullpair-by-index
+        | type is \Ethereum => get-ethereum-fullpair-by-index
+        | _ => get-bitcoin-fullpair-by-index 
     fun mnemonic, index, network
+
+export get-address-by-index = (mnemonic, index, network)->
+    get-full-pair-by-index(mnemonic, index, network).address
+
     
 export generate-keys = (mnemonic)->
     seed = bip39.mnemonic-to-seed-hex mnemonic 
