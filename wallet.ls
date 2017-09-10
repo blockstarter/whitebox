@@ -1,5 +1,6 @@
 require! {
    \bitcoinjs-lib : bitcoin
+   \bitcoinjs-lib-zcash : zcash
    \bip32-utils : bip32utils
    \bip39
    \ethereumjs-wallet/hdkey
@@ -28,9 +29,13 @@ get-monero-fullpair-by-index = (mnemonic, index, network)->
     { address, spend-key, view-key } = monero.generate-address "#{mnemonic} / #{index}"
     { address, private-key: spend-key, view-key }
 
+get-library = (network)->
+    | network.message-prefix.index-of('Zcash Signed Message') > -1 => zcash
+    | _ => bitcoin
+
 get-bitcoin-fullpair-by-index = (mnemonic, index, network)->
     seed = bip39.mnemonic-to-seed-hex mnemonic 
-    hdnode = bitcoin.HDNode.from-seed-hex(seed, network).derive(index)
+    hdnode = get-library(network).HDNode.from-seed-hex(seed, network).derive(index)
     address = hdnode.get-address!
     private-key = hdnode.key-pair.toWIF!
     public-key = hdnode.get-public-key-buffer!.to-string(\hex)
@@ -38,7 +43,7 @@ get-bitcoin-fullpair-by-index = (mnemonic, index, network)->
 
 get-ethereum-fullpair-by-index = (mnemonic, index, network)->
     seed = bip39.mnemonic-to-seed(mnemonic)
-    wallet = hdkey.from-master-seed(seed)   
+    wallet = hdkey.from-master-seed(seed)
     w = wallet.derive-path("0").derive-child(index).get-wallet!
     address = "0x" + w.get-address!.to-string(\hex)
     private-key = w.get-private-key-string!
