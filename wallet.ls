@@ -1,16 +1,14 @@
 require! {
    \bitcoinjs-lib : bitcoin
-   #\bitcoinjs-lib-zcash : zcash
+   \bitcoinjs-lib-zcash : zcash
    \bip32-utils : bip32utils
    \bip39
-   #\ethereumjs-wallet/hdkey
+   \ethereumjs-wallet/hdkey
    #\waves.js/dist/waves.js
    \./monero.js
    
 }
 
-zcash = {}
-hdkey = {}
 waves = {}
 
 
