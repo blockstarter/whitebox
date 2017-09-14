@@ -1,4 +1,10 @@
 {
+  "description": "Liveserver Client",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "bip32-utils": "0.10.0",
@@ -7,17 +13,10 @@
     "bitcore-lib": "0.14.0",
     "bitcore-message": "1.0.4",
     "prelude-ls": "^1.1.2",
-    "superagent": "^3.5.2",
-    "waves.js": "0.0.7-13"
+    "superagent": "^3.5.2"
   },
-  "version": "0.1.49",
+  "version": "0.1.50",
   "name": "whitebox",
   "uperversion": "0.1",
-  "subversion": 49,
-  "main": "index.js",
-  "description": "Liveserver Client",
-  "author": "",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  }
+  "subversion": 50
 }
