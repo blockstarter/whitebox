@@ -5,7 +5,7 @@ require! {
    \bip39
    #\ethereumjs-wallet/hdkey
    #\waves.js/dist/waves.js
-   \./monero.js
+   #\./monero.js
    
 }
 
