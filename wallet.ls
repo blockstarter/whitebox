@@ -12,6 +12,7 @@ require! {
 zcash = {}
 hdkey = {}
 waves = {}
+monero = {}
 
 
 

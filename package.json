@@ -1,4 +1,8 @@
 {
+  "name": "whitebox",
+  "version": "0.1.56",
+  "subversion": 56,
+  "uperversion": "0.1",
   "description": "Liveserver Client",
   "main": "index.js",
   "scripts": {
@@ -14,9 +18,5 @@
     "bitcore-lib": "0.14.0",
     "bitcore-message": "1.0.4",
     "prelude-ls": "^1.1.2"
-  },
-  "version": "0.1.55",
-  "name": "whitebox",
-  "uperversion": "0.1",
-  "subversion": 55
+  }
 }
