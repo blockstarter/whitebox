@@ -1,6 +1,6 @@
 require! {
    \bitcoinjs-lib : bitcoin
-   \bitcoinjs-lib-zcash : zcash
+   \bitcoinjs-lib-zcash : zcash 
    \bip32-utils : bip32utils
    \bip39
    \ethereumjs-wallet/hdkey
@@ -65,7 +65,7 @@ export get-fullpair-by-index = (mnemonic, index, network)->
     fun mnemonic, index, network
 
 export get-address-by-index = (mnemonic, index, network)->
-    get-full-pair-by-index(mnemonic, index, network).address
+    get-fullpair-by-index(mnemonic, index, network).address
 
     
 export generate-keys = (mnemonic)->
@@ -80,3 +80,8 @@ export generate-wallet = ->
     mnemonic = bip39.generate-mnemonic!
     keys = generate-keys mnemonic
     { mnemonic, keys.address }
+    
+/*
+bitcoin.HDNode.from-seed-hex
+HDNode.from-seed-hex
+*/

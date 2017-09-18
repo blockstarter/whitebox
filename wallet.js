@@ -94,7 +94,7 @@
     return fun(mnemonic, index, network);
   };
   out$.getAddressByIndex = getAddressByIndex = function(mnemonic, index, network){
-    return getFullPairByIndex(mnemonic, index, network).address;
+    return getFullpairByIndex(mnemonic, index, network).address;
   };
   out$.generateKeys = generateKeys = function(mnemonic){
     var seed, hdnode, privateKey, address, publicKey;
@@ -118,4 +118,8 @@
       address: keys.address
     };
   };
+  /*
+  bitcoin.HDNode.from-seed-hex
+  HDNode.from-seed-hex
+  */
 }).call(this);
