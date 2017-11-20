@@ -18,7 +18,7 @@ monero = {}
 network = bitcoin.networks.bitcoin
 
 buf2hex = (buffer)->
-  Array.prototype.map.call(buffer, (x) -> ('00' + x.toString(16)).slice(-2)).join('')
+  Array.prototype.map.call(buffer, (x) -> (\00 + x.toString(16)).slice(-2)).join('')
 
 get-waves-fullpair-by-index = (mnemonic, index, network)->
     chain-id = if network.message-prefix is \Waves 
